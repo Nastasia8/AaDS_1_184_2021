@@ -1,12 +1,13 @@
 print('Task 5')
 
 def Calc(k):
+    prod = 1
     for n in range(1,k):
-        prod = (n+3**n)/(n+5**2*n)
+        prod *= (n+3 ** n)/(n+5 ** (2 * n))
     return prod
 
 k = int(input('K: '))
-D =  Calc(k)
+D = Calc(k)
 print(D)
 
 print('Task 6')
@@ -25,15 +26,10 @@ print(Func(start, end))
 print('Task 8')
 number = int(input('Введите число: '))
 if (number>99999) and (number<1000000):
-    while True:
-        count = number % 10
-        number = number // 10
-        if count: break
-    while number:
-        x = number % 10
-        if x:
-            count *= x
-        number = number // 10
+    count = 1
+    while(number > 0):
+      count *= number % 10
+      number//=10
     print(count)
 else:
     print('Oh...')

@@ -37,7 +37,7 @@ Function(mnoz,numbers)
 
 
 print('Task_7')
-A = [5, 1, 3, 5, 3, 1, 0, 9, 5, 3, 8, 6, 5, 7]
+A = (5, 1, 3, 5, 3, 1, 0, 9, 5, 3, 8, 6, 5, 7)
 B = [x for x in range(len(A)) if A[x]==5]
 print(B)
 print()
