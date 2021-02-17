@@ -78,16 +78,4 @@ print(dict)
 d2 ={}
 count = 0
 text = "Smile, word, Thank, you, smart, Word, smile, Dog, Cat, word, you, cat, he, thank, You, She, hello, she, smile, thanks, dog, Hello, You, and, He, word".lower().split(' , ')
-# for word in text:
-#     # if word in d:
-#     #     count+=1
-#     d2[word] = d2.get(word, 0) + 1
-# print(d2)
-
 print({word: text.count(word) for word in text})
-
-
-
-
-
-print('Nikita, купи мне мак')
