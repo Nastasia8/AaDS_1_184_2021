@@ -1,0 +1,10 @@
+a=int(input("Введите первое число: "))
+b=int(input("Введите последнее число: "))
+def funct(a,b):
+    summ=0
+    for i in range(a, b):
+        if i%2!=0:
+            summ+=i
+    print("Сумма нечётных чисел равна: ", summ)
+
+funct(a,b)

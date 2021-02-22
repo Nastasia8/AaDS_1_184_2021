@@ -1,0 +1,8 @@
+users ={"a": 35, "b": -78, "c": 5.697, "d": 701, "e": 94.01}
+multiplication = 1
+addition = 0
+for key in users:
+    multiplication = multiplication * users[key]
+    addition= addition + users[key]
+print("Произведение = ", multiplication)
+print("Сумма = ", addition)

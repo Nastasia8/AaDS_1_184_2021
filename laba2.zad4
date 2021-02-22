@@ -1,0 +1,12 @@
+words=["Clematis", "Dahlia", "Rose", "Iris", "Chrysanthemum", "Freesia", "Astilba", "Lily", "Peony"]
+new_start=words.pop()
+new_end=words.pop(0)
+words.append(new_end)
+words.insert(0, new_start)
+print(words)
+
+words=["Clematis", "Dahlia", "Rose", "Iris", "Chrysanthemum", "Freesia", "Astilba", "Lily", "Peony"]
+def funny(words):
+    words[0], words[-1]=words[-1], words[0]
+    return words
+print(funny(words))
