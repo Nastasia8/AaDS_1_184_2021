@@ -1,4 +1,4 @@
-first_list = list(range(0,30))
+first_list = list(range(1,31))
 second_list = []
 
 def calc(y, x):
@@ -6,9 +6,8 @@ def calc(y, x):
     for i in first_list:
         if i%2==1:
              i = i**x**y
-             second_list.append(i)
-        else:
-            second_list.append(i)
+        
+        second_list.append(i)
 
 x = int(input('X:'))
 y = int(input('Y:'))
