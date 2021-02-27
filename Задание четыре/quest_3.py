@@ -11,7 +11,12 @@ print(res)
 
 def Func(list_):
     list_.sort()
-    new_list = set(list_)
+    new_list = []
+    for item in list_:
+        if item in new_list:
+            continue
+        else:
+            new_list.append(int(item))
     new_list = tuple(new_list)
     return new_list
     
