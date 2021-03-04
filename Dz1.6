@@ -1,0 +1,10 @@
+  
+def func(m,n):
+    summa=0
+    for i in range(m,n+1):
+        if i%2==1:
+            summa=summa+i
+    print("Сумма нечетных чисел в диапазоне равна:", summa)
+m=int(input("Введите начальное число диапазона: "))
+n=int(input("Введите конечное число диапазона: "))
+func(m,n)

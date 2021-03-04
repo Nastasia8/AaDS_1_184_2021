@@ -1,0 +1,8 @@
+A={0, "Ananas", "Dasha", "Artem"}
+B=[1, "Dasha","Sasha","Dima","Natasha"]
+def group (A,B):
+    for i in B:
+        if i not in A:
+            return False
+    return True
+print(group(A,B))

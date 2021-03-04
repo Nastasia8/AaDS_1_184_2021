@@ -1,0 +1,20 @@
+from math import *
+def func (a,b,c):
+    if a>0:
+        D=b**2-4*a*c
+        if D<0:
+            print("Корней нет")
+        elif D==0:
+            f1=(-1*b)/(2*a)
+            print("Корень уравнения равен:",f1)
+        else:
+            f1=(-1*b+sqrt(D))/(2*a)
+            f2=(-1*b-sqrt(D))/(2*a)
+            print("Первый корень уравнения равен",f1, "\nВторой корень уравнения равен:", f2)
+    else:
+        print("Уравние не квадратное, попробуйте еще раз")
+a=int(input("Введите a: "))
+b=int(input("Введите b: "))
+c=int(input("Введите c: "))
+func(a,b,c)
+

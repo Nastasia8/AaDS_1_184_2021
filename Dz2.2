@@ -1,0 +1,9 @@
+a = list(range(1, 26))
+b=[]
+for number in a:
+   if number%2==0:
+      b.append(number**2)
+for number in b:
+   print(number)
+
+print([i**2 for i in a if i%2==0])

@@ -1,0 +1,19 @@
+#цикл
+a=[5, 0, 7, 3, 6, 14, 96, 23, 82, 53]
+b=[]
+for number in a:
+    if number%2==1:
+       b.append(number)
+for number in b:
+   print(number)
+#list comprehension 
+a = [5, 0, 7, 3, 6, 14, 96, 23, 82, 53]
+print([i for i in a if i%2==1])
+#использования встроенной функции filter(..., ...)
+a = [5, 0, 7, 3, 6, 14, 96, 23, 82, 53]
+def fun(n):
+    return n % 2 == 1
+print(list(filter(fun,a)))
+#*лямбда-выражений+функция filter(..., ...)*
+a = [5, 0, 7, 3, 6, 14, 96, 23, 82, 53]
+print(list(filter(lambda n: n%2==1,a)))

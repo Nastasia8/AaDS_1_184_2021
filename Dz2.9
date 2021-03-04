@@ -1,0 +1,10 @@
+d={}
+list= ["Tom", 23, 170, 65, "Anna", 18, 160, 50, "Alex", 24, 175, 70, "Kim", 33, 180, 57]
+string = ""
+for a in list:
+    if type(a)==str:
+        d[a]=[]
+        string=a
+    else:
+        d[string].append(a)
+print(d)
