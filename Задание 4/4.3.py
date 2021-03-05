@@ -9,7 +9,6 @@ for i in str_list:
 print(res)
 
 
-
 def funct(list):
     list.sort()
     n_list=set(list)
@@ -27,3 +26,4 @@ for i in a:
 
 b.sort()
 print(tuple(b))
+
