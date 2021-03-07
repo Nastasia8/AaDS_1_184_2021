@@ -1,0 +1,11 @@
+x=int(input("X: "))
+y=int(input("Y: "))
+def NOK(x,y):
+    i = min(x,y)     
+    while True:
+        if i%x==0 and i%y==0:
+            break
+        i+=1
+    print(i)    
+print(NOK(x,y))    
+   

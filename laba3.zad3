@@ -1,0 +1,11 @@
+nums = [15,86,9,21,-97,-88,0,-27,63,-17,-44,-5]
+print({num: "+" if num in nums})
+d ={}
+for num in nums:
+    if num>0:
+        d[num]="+"
+    elif num<0:
+        d[num]="-"
+    else:
+        d[num]="zero"
+print(d)
