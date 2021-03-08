@@ -1,0 +1,13 @@
+a = [6, 2, 9, 13, 1, 8, 4, -5, -11, -8, -2, -6]
+b = 0
+for i in a[::-1]:
+    if i>0:
+        break
+    b=b+i
+print(b) #First methond
+c = 0
+i=-1
+while a[i] < 0: #Second method
+    c+=a[i]
+    i-=1
+print(c)
