@@ -1,0 +1,9 @@
+def spis (a):
+    for i in range(len(a)):
+        b=a.count(a[i])
+        if b>1:
+            a[i]=str(a[i])*b
+    return set(a)
+
+c=[5, 6, 9, 6, 3, 5, 2, 5, 1]
+print(spis(c))
