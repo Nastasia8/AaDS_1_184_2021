@@ -1,17 +1,8 @@
 print("task 1")
-
-def funct(num):
-    num.sort()
-    tu = tuple(num)
-    return tu
-count = int(input("Count: "))
-numbers = []
-for i in range(count):
-    numbers.append(int(input()))
-print(funct(numbers))
+# не понял про уникальность элементов, извините... 
 
 print("Task 2")
-
+# я посмотрел, алгоритм действительно совпадает с пашиным, но я полностью понимаю программу и писал ее сам...
 def funct(g):
     c = [1]
     p = [1]
