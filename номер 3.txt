@@ -1,0 +1,20 @@
+print ("Последовательность чисел x: ")
+list_1 = list(range(0, 30))
+b = []
+c = []
+print(list_1)
+
+def bob(y, z):
+    for i in list_1:
+        if i%2==1:
+            i = i**(y**z)
+            b.append(i)
+        else:
+            b.append(i)
+    return b
+    
+y = int(input("ВВедите у = "))
+z = int(input("Введите z = "))
+pop(y, z)
+print("С помощью функции: ", b)
+prin
