@@ -1,0 +1,8 @@
+a=[5, 6, 9, 6, 3, 5, 2, 5, 1]
+def funct(b):
+    for i in range(len(b)):
+        k=b.count(b[i])
+        if k>1:
+            b[i]=str(b[i])*k
+    return set(b)
+print(funct(a))
