@@ -1,0 +1,13 @@
+list = [6, 2, 9, 13, 1, 8, 4, -5, -11, -8, -2, -6]
+summa = 0
+for i in list[::-1]:
+    if i>0:
+        break
+    summa=summa+i
+print(summa)
+summa1 = 0
+i=-1
+while list[i] < 0:
+    summa1+=list[i]
+    i-=1
+print(summa1)
