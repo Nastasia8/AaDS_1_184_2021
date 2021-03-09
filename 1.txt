@@ -1,0 +1,117 @@
+1.1
+
+text = "The tiger once ranged widely from the Eastern Anatolia Region in the west to the Amur River basin, and in the south from the foothills of the Himalayas to Bali in the Sunda islands.".lower()
+a = 0
+s = 0
+for word in text:
+    if word == "a":
+        a = a + 1
+    elif word == "s":
+        s = s + 1
+print("'a' count = ", a)
+print("'s' count = ", s)
+
+1.2
+
+import math
+def calc(l):
+    return 2*math.pi*math.sqrt(l/10)
+l = int(input())
+print(calc(l))
+
+1.3
+
+import math
+print("Print X and Y number, and procedure number:")
+print("Procedures:")
+print("1 - addition\n2 - subtraction (x - y)\n3 - multiplication\n4 - division (x/y, y != 0)\n5 - raised X to the power of Y")
+x = int(input("X = "))
+y = int(input("Y = "))
+procedure = 0
+answer = 0
+while (procedure > 5 or procedure < 1):
+    procedure = int(input("Procedure number: "))
+    if not 1 <= procedure <= 5:
+        print('Only numbers between 1 and 5 are accepted, try again')
+if procedure == 1:
+    answer = x + y
+elif procedure == 2:
+    answer = x - y
+elif procedure == 3:
+    answer = x * y
+elif procedure == 4:
+    if y == 0:
+        print("Y could not be equal 0! Try again.")
+    else:
+        answer = x / y
+elif procedure == 5:
+    answer = math.pow(x, y)
+print("Answer = ", answer)
+
+1.4
+
+import math
+def calc(p, m, n):
+    return p*math.pow((1+(15/100/(m/12))), m/(12*n))
+p = int(input("P ="))
+m = int(input("m ="))
+n = int(input("n ="))
+print(calc(p, m, n))
+
+1.5
+
+import math
+def calc(k):
+    answer = 1
+    for n in range(1, k+1):
+	answer *=(n+3**n)/(n+5**(2*n))
+	return answer
+k = int(input("K = "))
+print("Answer = ", calc(k))
+
+1.6
+
+def calc(x, y):
+    count = 0
+    for number in range(x, y):
+        if (number % 2) != 0:
+            count = count + 1
+    return count
+print("Print range.")
+x = int(input("From: "))
+y = int(input("To: "))
+print("Count of odd numbers: ", calc(x, y))
+
+1.7
+
+import math
+def calc(x, y, z):
+    d = round(math.pow(y, 2) - 4*x*z, 2)
+    if d < 0:
+        return d
+    elif d == 0:
+        f = -round(1*y/(2*x))
+        return d, f
+    else:
+        f1 = round((-1*y+math.sqrt(d))/(2*x), 2)
+        f2 = round((-1*y-math.sqrt(d))/(2*x), 2)
+        return d, f1, f2
+x = int(input("X = "))
+y = int(input("Y = "))
+z = int(input("Z = "))
+print(calc(x, y, z))
+
+1.8
+
+def calc(x):
+    answer = 1
+    while x > 0:
+        answer = answer * (x%10)
+        x = x // 10
+    return answer
+x = 0
+while len(str(x)) != 6:
+    x = int(input("X = "))
+    if len(str(x)) != 6:
+        print("Print six-digit number.")
+print("Answer = ", calc(x))
