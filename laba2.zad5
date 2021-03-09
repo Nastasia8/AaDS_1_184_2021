@@ -1,0 +1,7 @@
+users={"tiger", 0, "leopard", "elephant", 2, 7}
+users2={1, "camel", "elephant", 2, 9}
+users3=users.union(users2)
+print(users3)
+
+users4=users.intersection(users2)
+print(users4)

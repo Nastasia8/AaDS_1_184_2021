@@ -1,0 +1,7 @@
+import numpy as p 
+matA = p.matrix([[11, 22], [33, 44]]) 
+print("Матрица A: ", matA) 
+matB = p.matrix('[3,1;1,3]')
+print("Вывод: ")
+res = p.multiply(matA,matB)
+print(res)
