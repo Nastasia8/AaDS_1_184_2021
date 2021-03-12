@@ -9,10 +9,10 @@ print(', '.join(array))
 
 count = len(array[0])
 Phase = 0
-for item in range(count-1, -1, -1):
+for item in range(reversed(count)):
     Phase += 1
     print('**********')
-    print('Phase',Phase)
+    print(f'Phase {Phase}')
     bucket = [[] for _ in range(10)]
     for j in range(len(array)):
         bucket[ord(array[0][item]) - ord('0')].append(array[j])
