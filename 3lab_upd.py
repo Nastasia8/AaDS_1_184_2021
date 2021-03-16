@@ -117,9 +117,9 @@ def change_mat(list):
         for j in list[i][::-1]:
             print(" ".join(str(l) for l in [j]), end = " ")
         print()
-print(change_mat(a))
+change_mat(a)
 print()
-print(change_mat(b))
+change_mat(b)
 
 print("Task 9")
 numbers = [15, 9, -1, 7, -6, 0, 8]
