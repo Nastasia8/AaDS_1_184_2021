@@ -1,37 +1,44 @@
-# in process
+def get_hash(string, substring, n):
+    k = 31
+    m = 1
+    substring_hash = 0
 
-alphabet_size = 256
-modulus = 1000003
+    for i in substring[::-1]:
+        substring_hash += ord(i) * m
+        m *= k
+        substring_hash %= n
+        m %= n
+    
+    m = 1
+    hash = 0
+    for i in string[:len(substring)][::-1]:
+        hash += ord(i) * m
+        m *= k
+        hash %= n
+        m %= n
+    
+    hash_tag = 1
+    for i in range(len(substring) - 1):
+        hash_tag *= k
+        hash_tag %= n
+    
+    res = []
 
-def rabin_karp(pattern, text):
-    p_len = len(pattern)
-    t_len = len(text)
+    if hash == substring_hash:
+        res.append(0)
 
-    if p_len > t_len:
-        return False
+    for i in range(1, len(string) - len(substring) + 1):
+        # вычисляем хеш
+        new_hash = ((hash % n - ord(string[i - 1]) * hash_tag % n) * k % n + ord(string[i + len(substring) - 1])) % n
+        if new_hash == substring_hash:
+            res.append(i)
+        hash = new_hash
+    return res
 
-    p_hash = 0
-    text_hash = 0
-    modulus_power = 1
+string = input()
+substring = input()
+n = 2 ** 31 - 1
+array = get_hash(string, substring, n)
+print(' '.join(map(str, array)))
 
-    for i in range(p_len):
-        p_hash = (ord(pattern[i]) + p_hash * alphabet_size) % modulus
-        text_hash = (ord(text[i]) + text_hash * alphabet_size) % modulus
-        if i == p_len - 1:
-            continue
-        modulus_power = (modulus_power * alphabet_size) % modulus
-
-    for i in range(0, t_len - p_len + 1):
-        if text_hash == p_hash and text[i : i + p_len] == pattern:
-            return True
-        if i == t_len - p_len:
-            continue
-        text_hash = (
-            (text_hash - ord(text[i]) * modulus_power) * alphabet_size
-            + ord(text[i + p_len])
-        ) % modulus
-    return False
-
-pattern = 'ababbababa'
-text = 'aba'
-print(rabin_karp(text, pattern))
+    
