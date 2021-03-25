@@ -1,0 +1,17 @@
+'''
+
+                            Online Python Compiler.
+                Code, Compile, Run and Debug python program online.
+Write your code in this editor and press "Run" button to execute it.
+
+'''
+
+def alina(z):
+  for i in range(len(z)):
+      k = z.count(z[i])
+      if k > 1:
+          z[i] = str(z[i] * k)
+  set(z)
+    
+u = [1, 2, 3, 4, 5, 6, 7, 6, 3, 4, 6, 7, 1, 2, 3, 4, 1, 1]
+print(alina(u))
