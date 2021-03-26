@@ -1,0 +1,28 @@
+def get_hash(s, n, d, y):
+    res = 0
+    for i in range(0, n):
+        res=(res*y+ord(s[i]))%d
+    return res
+ 
+ 
+def rabin_karp(s, t,d, y):
+    ht=get_hash(t, len(t),d,y)
+    hs=get_hash(s, len(t),d,y)
+    yt=1
+    l=[]
+    for i in range (len(t)):
+        yt=(yt*y)%d
+    for i in range(len(s)-len(t)+1):
+        if ht==hs:
+            l.append(i)
+        if i+len(t)<len(s):
+            hs=(hs*y-ord(s[i])*yt+ord(s[i+len(t)]))%d
+ 
+    print(" ".join(map(str, l)))
+def main():
+    s=input()
+    t=input()
+    d=10**9+7
+    y=26
+    rabin_karp(s,t,d,y)
+main()
