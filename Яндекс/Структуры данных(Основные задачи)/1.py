@@ -10,5 +10,5 @@ def funct(s):
             k += 1
     return k+len(l)
     
-s = str(input())
+s = input()
 print(funct(s))

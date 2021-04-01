@@ -1,5 +1,4 @@
-def pref_funct(s):
-    n = len(s)
+def pref_funct(s,n):
     k = [0] * n    
     k[0] = 0
     for i in range (n - 1):
@@ -13,14 +12,11 @@ def pref_funct(s):
     return k
 #префикс функция
 
-text = str(input())
-s = list(text)
-pref = pref_funct(s)
-n=len(s)
-for i in range(n - 1, n):
-    res = n - pref[i]
-
-if (n % res == 0):
-    print(n // res)
+A = input()
+n=len(A)
+res = pref_funct(A,n)
+k = n - res[n-1]
+if (n % k == 0):
+    print(n//k)
 else:
-    print('1')
+    print(1)
