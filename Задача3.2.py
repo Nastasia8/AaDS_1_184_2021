@@ -1,3 +1,4 @@
+#Задание делали на паре на доске...
 def merge_sort(numbers, start, end):
     if end - start > 1:
         middle = (end + start) // 2
