@@ -1,19 +1,16 @@
-num = int(input())
+length = int(input())
+array = list(zip(list(map(int, input().split())), range(length)))
 
-list_ = list(map(int,input().split()))
+stack = []
+result = [0]*length
 
-stack = [0]*num
-
-for i in range(num - 1):
-    for j in range(1, num):
-        if list_[i] > list_[j]:
-            stack[i] = j
-            break
-    n += 1
-for i in range(0, length):
-    if (stack[i] == 0):
-        stack[i] = -1
-
-print(' '.join(map(str, stack)))
-
-# in process
+for item in array[::-1]:
+    while (stack != []) and (stack[-1][0] >= item[0]):
+        stack.pop()
+    if stack == []:
+        result[item[1]] = -1
+    else:
+        result[item[1]] = stack[-1][1]
+    stack.append(item)
+    
+print(' '.join(map(str, result)))
