@@ -1,12 +1,31 @@
-a = list(input())
-b = list(input())
-k = 0 
-for i in range(len(a)-1):
-    while a != b:
-        a.insert(0, a.pop())
-        k+=1
-if a != b:
-    k = -1
-print(k)
+def hash(A, n):
+    res = 0
+    for i in range(n):
+        res = (res * p + ord(A[i])) % d
+    return res
 
-#TL(((
+def rabin_karp(s, q, n):
+    hs_hash = hash(s, n)
+    hq_hash = hash(q, n)
+    
+    dq = 1
+    for i in range(n-1):
+        dq = (dq * p) % d
+    if hs_hash == hq_hash:
+        return 0
+    for i in range(n-1):
+        hq_hash = (hq_hash - ord(q[i]) * dq) * p
+        hq_hash += ord(q[i])
+        hq_hash %= d       
+        if hs_hash== hq_hash:
+            return i+1
+    return -1 
+
+s = input()
+q = input()
+
+p = 31
+d = 2 ** 31 - 1
+
+A = rabin_karp(s, q, len(s))
+print(A)
