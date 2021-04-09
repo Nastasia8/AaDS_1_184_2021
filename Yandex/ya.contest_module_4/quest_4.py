@@ -11,7 +11,7 @@ def minimal_search(array, n, k):
         while (stack != []) and (item-k >= stack[0]):
             stack.pop(0)
 
-        while (stack != []) and (array[i] <= array[stack[-1]]):
+        while (stack != []) and (array[item] <= array[stack[-1]]):
             stack.pop()
 
         stack.append(item)
