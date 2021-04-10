@@ -10,14 +10,26 @@ class Employee():
         self.cost_hour = cost_hour
     
     def Salary(self):
-        print(int(self.hours_worked) * int(self.cost_hour))
+        salary = int(self.hours_worked) * int(self.cost_hour)
+        self.salary = salary
+        print(f'{self.name} salary: {self.salary}')
     
     def Prize(self):
-        pass
+        if (int(self.work_experience) > 1) and (int(self.work_experience) <= 3):
+            print(self.salary + (self.salary / (3*100)))
+        elif (int(self.work_experience) > 3) and (int(self.work_experience) <= 6):
+            print(self.salary + (self.salary / (5*100)))
+        elif (int(self.work_experience) > 6) and (int(self.work_experience) <= 9):
+            print(self.salary + (self.salary / (7*100)))
+        elif (int(self.work_experience) >= 10):
+            print(self.salary + (self.salary / (13*100)))
+        
 
     def Display(self):
-        print(f'{self.name} {self.surname} work {self.work_experience}. Work on {self.post} post, live in {self.adress}. Phone number: {self.phone_number}. Today {self.name} work {self.hours_worked} hours.')
+        print(f'{self.name} {self.surname} work {self.work_experience} years. Work on {self.post} post, live in {self.adress}. Phone number: {self.phone_number}. Today {self.name} worked {self.hours_worked} hours.')
 
 
-first_worker = Employee('Nikita', 'Uzhastin', '0', 'junior', 'Ivanovo', '8900555535', '1', '5')
-first_worker.Display()    
+first_worker = Employee('Nikita', 'Uzhastin', '2', 'junior', 'Ivanovo', '8900555535', '6', '30')
+first_worker.Salary()
+first_worker.Prize()   
+first_worker.Display() 

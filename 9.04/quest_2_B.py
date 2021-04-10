@@ -16,7 +16,9 @@ class Car:
         print(f'Car goes from {self.start} to {self.end}')
     
     def Age(self):
-        print(2021 - int(self.date))
+        today = datetime.datetime.now()
+
+        print(today.year - int(self.date))
     
     def set_color(self, color):
         self.color = color
@@ -29,7 +31,13 @@ class Car:
 
 first_car = Car('BMW', 'Red', '2001', 'old')
 first_car.Display()
-first_car.set_color('black')
-first_car.Start_End('Moskow', 'Ivanovo')
-first_car.get_date()
-first_car.Age()
+first_car.Start_End('Ivanovo', 'Pestyaki')
+
+second_car = Car('Shah', 'Yellow', '1980', 'very old')
+second_car.Age()
+second_car.Display()
+
+third_car = Car('LADA 7', 'cherry', '2005', 'old')
+third_car.Display()
+third_car.set_color('Red')
+third_car.Display()
