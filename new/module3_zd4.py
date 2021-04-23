@@ -14,3 +14,4 @@ def main():
     p=prefix(s)
     print(len(s)-p[-1])
 main()
+#
