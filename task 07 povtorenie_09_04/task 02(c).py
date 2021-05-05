@@ -1,11 +1,11 @@
 class Employee:
     def __init__(self, first_name, last_name, seniority, position, address, phone, hours, salary):
-        self.__first_name = str(first_name)
-        self.__last_name = str(last_name)
+        self.__first_name = first_name
+        self.__last_name = last_name
         self.__seniority = seniority
-        self.__position = str(position)
-        self.__address = str(address)
-        self.__phone = str(phone)
+        self.__position = position
+        self.__address = address
+        self.__phone = phone
         self.__hours = hours
         self.__salary = salary
 
@@ -14,11 +14,11 @@ class Employee:
             self.__first_name,
             self.__last_name,
             "working as a", self.__position,
-            "for",  self.__seniority
+            "for", self.__seniority, "year" if self.__seniority == 1 else "years"
         )
         print(
             "Address:", self.__address +
-            "; Phone number:", self.__phone +
+            "; Phone number:", str(self.__phone) +
             "; Hours per day:", str(self.__hours) +
             "; Salary per hour:", self.__salary
         )
