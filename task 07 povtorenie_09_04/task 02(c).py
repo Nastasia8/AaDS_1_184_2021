@@ -14,7 +14,7 @@ class Employee:
             self.__first_name,
             self.__last_name,
             "working as a", self.__position,
-            "for", self.__seniority, "year" if self.__seniority == 1 else "years"
+            "for", self.__seniority, "year" if self.__seniority == 1 else "years" 
         )
         print(
             "Address:", self.__address +
