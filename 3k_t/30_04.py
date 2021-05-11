@@ -32,10 +32,16 @@ class Rectangle(Figure):
     def info(self):
         print ("Type:", self.__type, "Square:",self.square(), "perimeter:", self.perimeter(), end=" ")
         super().info()
+    @property
+    def type(self):
+        return self.__type
+    @type.setter
+    def type(self, type):
+        self.__type = type
 class Foursquare(Rectangle):
     def __init__(self, width, color):
         super().__init__(width, width, color)
-        self.__type="Foursquare"
+        self.type="Foursquare"
 class Triangle(Figure):
     def __init__(self, a, b, c, color):
         super().__init__(color)

@@ -35,9 +35,7 @@ class Node:
     def find_fork(self):
         if self.left:
             self.left.find_fork()
-        if self.left and not self.right:
-            print(self.data)
-        if not self.left and self.right:
+        if (self.left and not self.right) or (not self.left and self.right):
             print(self.data)
         if self.right:
             self.right.find_fork()
@@ -51,4 +49,3 @@ def main():
     tree = build_tree(numbers)
     tree.find_fork()
 main()
-#код
