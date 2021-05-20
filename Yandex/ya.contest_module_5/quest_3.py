@@ -1,39 +1,37 @@
-# RMQ - _ _ _ _ _ деревья отрезков.
-# RSQ - запрос диапозона суммы.
-# 4 * n - место, выделяемое для отрезка
+def NOD(a, b):
+    while b:
+        a, b = b, a % b
+    return a
 
-from math import gcd # модуль для вычисления наибольшего общего делителя
-
-def build(v, left, right, segment_tree, value):
+def build(v, left, right, segment_tree, nums):
     if right - left == 1:
-        segment_tree[v] = value[left]
+        segment_tree[v] = nums[left]
         return
-    middle = (right + left) // 2
+    middle = (left + right) // 2
+    build(2 * v + 1, left, middle, segment_tree, nums)
+    build(2 * v + 2, middle, right, segment_tree, nums)
+    segment_tree[v] = NOD(segment_tree[2 * v + 1], segment_tree[2 * v + 2])
 
-    build(2*v+1, left, middle, segment_tree, value)
-    build(2*v+2, middle, right, segment_tree, value)
-    
-    segment_tree[v] = gcd(value[2*v+1], value[2*v+2])
 
-def get_gcd(v, left, right, segment_tree, q_left, q_right):
+def get_NOD(v, left, right, segment_tree, q_left, q_right):
     if q_left <= left and q_right >= right:
         return segment_tree[v]
-    if q_left >= r or q_right <= left:
+    if q_left >= right or q_right <= left:
         return 0
-    middle = (right + left) // 2
-    t_left = get_gcd(2*v+1, left, middle, segment_tree, q_left, q_right)
-    t_right = get_gcd(2*v+2, middle, right, segment_tree, q_left, q_right)
-    return gcd(t_left, t_right)
+    middle = (left + right) // 2
+    st_l = get_NOD(2 * v + 1, left, middle, segment_tree, q_left, q_right)
+    st_r = get_NOD(2 * v + 2, middle, right, segment_tree, q_left, q_right)
+    return NOD(st_l, st_r)
 
-numbers = int(input())
-res = list(map(int, input().split()))
-segment_tree = [0]*4*numbers
-build(0, 0, numbers, segment_tree, res)
+n = int(input())
+numbers = list(map(int, input().split()))[:n]
+segment_tree = [0] * 4 * n
+build(0, 0, n, segment_tree, numbers)
 q = int(input())
-index = []
+res = []
 while q != 0:
-    left, right = map(int, input())
-    index.append(get_gcd(0, 0, numbers, segment_tree, left-1, right))
+    left, right = map(int, input().split())
+    res.append(get_NOD(0, 0, n, segment_tree, left - 1, right))
     q -= 1
 
-print(*index)
+print(*res)
