@@ -21,9 +21,9 @@ def update(value, left, right, segm_tree, index, nums):
     middle = (left + right) // 2
 
     if index < middle:
-        update(2*value + 1, left, middle, segm_tree, index,value)
+        update(2*value + 1, left, middle, segm_tree, index, nums)
     else:
-        update(2*value + 2, middle, right, segm_tree, index, value)
+        update(2*value + 2, middle, right, segm_tree, index, nums)
 
     segm_tree[value] = gcd(segm_tree[2*value + 1], segm_tree[2*value + 2])
 
@@ -38,6 +38,7 @@ def get_NOD(value, left, right, segm_tree, q_left, q_right):
 
     st_left = get_NOD(2*value + 1, left, middle, segm_tree, q_left, q_right)
     st_right = get_NOD(2 * value + 2, middle, right, segm_tree, q_left, q_right)
+
     return gcd(st_left, st_right)
 
 n = int(input())
@@ -51,11 +52,12 @@ result = []
 
 while q != 0:
     type, left, right = map(str, input().split())
+
     if type == 's':
-        result.append(get_NOD(0, 0, n, segment_tree, int(left)-1, int(right)))
+        result.append(get_NOD(0, 0, n, segment_tree, int(left) - 1, int(right)))
     else:
-        update(0, 0, n, segment_tree, int(left)-1, int(right))
-        
+        update(0, 0, n, segment_tree, int(left) - 1, int(right))
+
     q -= 1
 
 print(*result)
