@@ -6,7 +6,7 @@ def merge_sort(numbers, start, end):
         left = numbers[start:middle]
         right = numbers[middle:end]
         internal_sort(numbers, left, right, start)
-        print(start + 1, end, right[0], left[-1])
+        print(start + 1, end, numbers[start], numbers[end-1])
 
 def internal_sort(arr, left, right, start):
     i = j = 0 ### i -> right, j -> left
