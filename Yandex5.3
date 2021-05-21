@@ -1,0 +1,39 @@
+def build(v, s, k, segment_tree, numbers):
+    if k - s == 1:
+        segment_tree[v] = numbers[s]
+        return
+    m = (k + s) // 2
+    build(2 * v + 1, s, m, segment_tree, numbers)
+    build(2 * v + 2, m, k, segment_tree, numbers)
+    segment_tree[v] = nod(segment_tree[2 * v + 1], segment_tree[2 * v + 2])
+
+def nod(a,b):
+    while b:
+        a, b = b, a%b
+    return a
+
+def getNOD(v, s, k, segment_tree, qs, qk):
+    if qs <= s and qk >= k:
+        return segment_tree[v]
+    if qs >= k or qk <= s:
+        return 0
+    m = (k + s) // 2
+    st_s = getNOD(2 * v + 1, s, m, segment_tree, qs, qk)
+    st_k = getNOD(2 * v + 2, m, k, segment_tree, qs, qk)
+    return nod(st_s, st_k)
+
+def main():
+    n = int(input())
+    numbers = list(map(int, input().split()))[:n]
+    segment_tree = [0] * 4 * n 
+    build(0, 0, n, segment_tree, numbers)
+    q = int(input())
+    a = []
+
+    while q != 0:
+        s, k = map(int, input().split())
+        a.append(getNOD(0, 0, n, segment_tree, s - 1, k))
+        q -= 1
+    print(*a)
+
+main()

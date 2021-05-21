@@ -1,0 +1,18 @@
+n,k = map(int, input().split())
+#numbers = list(map(int, input().split())) 
+numbers =[int(i) for i in input().split()]
+stack = []
+res=[0]*n
+for i in range(n):
+    while stack and numbers[stack[-1]] > numbers[i]:
+        res[stack.pop()] = i
+    stack.append(i)
+while stack:
+    res[stack.pop()]=n
+min = 0
+for i in range(n-k+1):
+    if min<i:
+        min=i
+    while res[min]<i+k:
+        min= res[min]
+    print(numbers[min])
