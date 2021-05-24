@@ -1,17 +1,3 @@
-# Оба решения не проходят 3 тест на яндекс контесте (ошибка во время исполнения)
-
-# Мое решение
-
-from collections import deque
-size, shift = map(int, input().split(" "))
-a = deque(list(map(int, input().split(" ")))[:size])
-
-for _ in range(size - shift + 1):
-    print(min(a[i] for i in range(shift)), end=" ")
-    a.popleft()
-    
-# Решение, которое писали на паре
-
 n,k = map(int, input().split())
 nums = list(int(i) for i in input().split(" "))
 stack = []
