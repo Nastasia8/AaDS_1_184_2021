@@ -1,5 +1,5 @@
 n,k = map(int, input().split())
-nums = list(int(i) for i in input().split(" "))
+nums = list(int(i) for i in input().split())
 stack = []
 res = [0] * n
 
