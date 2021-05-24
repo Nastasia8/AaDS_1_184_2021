@@ -1,21 +1,3 @@
-# Мое решение у которого ошибка в 8 тесте
-
-from collections import deque
-size = int(input())
-a = deque(list(map(int, input().split(" ")))[:size])
-inOrder = True
-
-for _ in range(len(a)):
-    if a[0] == max(a) or a[0] == min(a):
-        a.popleft()
-    else:
-        inOrder = False
-        break
-
-print("YES" if inOrder else "NO")
-
-# Решение которое вы мне показали
-
 from collections import deque
 size = int(input())
 a = deque(list(map(int, input().split(" ")))[:size])
