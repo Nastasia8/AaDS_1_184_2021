@@ -1,0 +1,26 @@
+def funct(n, tup):
+    if n in tup:
+      start= tup.index(n)
+      k=tup.count(n)
+      if k==1:
+        return(tup[start:])
+      else:
+        i=1
+        end=start
+        while i<k:
+          end=tup.index(n,end+1)
+          i+=1
+          return tup[start:end+1]
+      return tup[start]    
+    else:
+      print("no element in",tup)
+
+
+
+tup=(1, 2, 3, 4, 5, 4, 6, 2, 4, 7, 9, 4, 5, 6, 5, 0, 4, 2)
+n=int(input('x ='))
+print(funct(n,tup))
+
+
+tup[:-1]
+  
