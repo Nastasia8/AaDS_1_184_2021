@@ -57,6 +57,8 @@ for _ in range(second):
         else:
             res.append(add(int(data[-1]), heap))
 
+# safe data in tuple
+# so that we can output different values later
 for item in res:
     if type(item) == tuple:
         print(*item)
