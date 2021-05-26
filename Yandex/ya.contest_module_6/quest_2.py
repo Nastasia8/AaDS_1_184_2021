@@ -1,0 +1,81 @@
+def shift_down(index, heap):
+    while 2 * index + 1 < len(heap):
+        left_index = 2 * index + 1
+        right_index = 2 * index + 2
+        child_index = left_index
+
+        if right_index < len(heap) and heap[left_index] < heap[right_index]:
+            child_index = right_index
+
+        if heap[child_index] <= heap[index]:
+            break
+
+        heap[index], heap[child_index] = heap[child_index], heap[index]
+        index = child_index
+    return index + 1
+
+def shift_up(index, heap):
+    while heap[index] > heap[(index-1) // 2] and (index-1) // 2 >= 0:
+        heap[index], heap[(index-1) // 2] = heap[(index-1) // 2], heap[index]
+        index = (index-1) // 2
+    return index + 1
+
+def get_max(heap):
+    return heap[0]
+
+def add(item, heap):
+    heap.append(item)
+    return shift_up(len(heap)-1, heap)
+
+def long_delete(index, heap):
+    value = heap[len(heap)-1]
+    heap[index-1], heap[len(heap)-1] = heap[len(heap)-1], heap[index-1]
+    index = heap.pop()
+    if value < index:
+        shift_down(index-1, heap)
+    elif value > index:
+        shift_up(index-1, heap)
+    return index
+    
+def delete(heap):
+    heap[0], heap[len(heap)-1] = heap[len(heap)-1], heap[0]
+    index = heap.pop()
+    if heap:
+        return shift_down(0, heap), index
+    else:
+        return 0, index
+    
+
+heap = []
+res = []
+numbers = input().split()
+first, second = int(numbers[0]), int(numbers[1])
+for _ in range(second):
+    data = input().split()
+    if int(data[0]) == 1:
+        if not heap:
+            res.append(-1)
+        else:
+            res.append(delete(heap))
+
+    elif int(data[0]) == 2:
+        if len(heap) == first:
+            res.append(-1)
+        else:
+            res.append(add(int(data[-1]), heap))
+
+    elif int(data[0]) == 3:
+        if len(heap) >= int(data[-1]) and int(data[-1]) > 0:
+            res.append(long_delete(int(data[-1]), heap))
+        else:
+            res.append(-1)
+
+# safe data in tuple
+# so that we can output different values later
+for item in res:
+    if type(item) == tuple:
+        print(*item)
+    else:
+        print(item)
+
+print(*heap)
