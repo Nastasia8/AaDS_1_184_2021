@@ -63,7 +63,7 @@ res = []
 while q != 0:
     # add item
     item = input().split()
-    # check on 4
+    # check on 4, this is for beauty, we break it into threes and fours
     if len(item) == 4:
         # input data
         left, right, number = int(item[1]), int(item[2]), int(item[3])
