@@ -1,0 +1,60 @@
+def shift_up(ind, heap): #создаем функцию сдвига вверх
+    while heap[ind] > heap[(ind-1)//2] and (ind-1)//2 >= 0: #пока куча с индексом больше кучи с индексом-1//2 и индекс-1//2 больше или равен 0...
+        heap[ind], heap[(ind-1)//2] = heap[(ind-1)//2], heap[ind]
+        ind = (ind-1)//2 #нахождение индекса
+    return ind+1 #возвращаем индекс + 1
+
+def shift_down(ind, heap): #создаем функцию сдвига вниз
+    while 2*ind+1 < len(heap): #пока индекс меньше длины...
+        left_index = 2*ind+1 #левый индекс
+        right_index = 2*ind+2 #правый индекс
+        in_ind = left_index
+        if right_index < len(heap) and heap[left_index] < heap[right_index]: #если правый индекс меньше длины и куда левого индекса меньше кучи правого индекса...
+            in_ind = right_index
+        if heap[in_ind] <= heap[ind]: 
+            break #прерывание
+        heap[ind], heap[in_ind] = heap[in_ind], heap[ind] 
+        ind = in_ind
+    return ind+1
+
+def add(i, heap): #+добавляем
+    heap.append(i) #добавление кучи
+    return shift_up(len(heap)-1, heap)
+
+
+def extract(heap): #-извлекаем
+    heap[0], heap[len(heap)-1] = heap[len(heap)-1], heap[0]
+    ind = heap.pop() #присваивание
+    if heap: #если куча
+        return shift_down(0, heap), ind
+    else:
+        return 0, ind
+
+def get_max(heap): #создаем функцию get_max
+    return heap[0]
+
+def main(): #основная часть
+    heap = []
+    res = []
+    i = input().split() #ввод с клавиатуры
+    n, m = int(i[0]), int(i[1])
+    for i in range(m):
+        data = input().split()
+        if int(data[0]) == 1:
+            if not heap: #если нельзя добавить элемент...
+                res.append(-1)
+            else: #в противном случае
+                res.append(extract(heap))
+        elif int(data[0]) == 2:
+            if len(heap) == n:
+                res.append(-1)
+            else:
+                res.append(add(int(data[-1]), heap))
+    for i in res:
+        if type(i) == tuple:
+            print(*i)
+        else:
+            print(i)
+    print(*heap) #вывод
+
+main() #вызов основной части

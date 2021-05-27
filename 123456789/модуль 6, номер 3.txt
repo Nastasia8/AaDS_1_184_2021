@@ -1,0 +1,38 @@
+def shift_down(v, heap): #создаем функцию спуска вниз
+    while 2*v+1 < len(heap): #пока ... меньше длины...
+        l_ind = 2*v+1 #поиск левого индекса
+        r_ind = 2*v+2 #поиск правого индекса
+        ind = 2*v+1 #индекс
+        if r_ind < len(heap) and heap[l_ind] < heap[r_ind]: #если правый индекс меньше длины и куча левого индекса меньше кучи правого индекса...
+            ind = r_ind #индекса равен правому индексу
+        if heap[ind] <= heap[v]:
+            break
+        heap[v], heap[ind] = heap[ind], heap[v]
+        v = ind #присваивание
+
+def extract(heap): #создаем функцию извлечения
+    heap[0], heap[-1] = heap[-1], heap[0]
+    a = heap.pop() #присваеваем 
+    shift_down(0, heap) #вызываем функцию спуска вниз
+    return a #возвращаем а
+
+def get_max(heap): #создаем функцию get_max
+    return heap[0] #возвращаем кучу
+
+def build(arr): #создаем функцию построения 
+    heap = arr[:]
+    for i in range(len(heap)-1, -1, -1): #пока i в указанном списке 
+        shift_down(i, heap) #вызывем функцию спуска вниз
+    return heap #возвращаем кучу
+
+def main(): #основная часть
+    num = int(input()) #ввод 
+    res = []
+    numbers = list(map(int, input().split()))[:num] #ввод с клавиатуры 
+    heap = build(numbers) #вызывем build
+    for i in range(num): #пока i в указанном списке 
+        print(*heap)
+        res.append(extract(heap))
+    res.reverse()
+    print(*res) #вывод
+main() #вызов основной функции

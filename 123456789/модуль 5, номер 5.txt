@@ -1,0 +1,48 @@
+from math import gcd #импорт библиотеки 
+
+def build(v, l, r, seg_tree, a): #функия построения дерева
+    if r-l == 1: 
+        seg_tree[v] = a[l]
+        return
+    m = (l+r)//2 #поиск середины
+    build(2*v + 1, l, m, seg_tree, a)
+    build(2*v + 2, m, r, seg_tree, a)
+    seg_tree[v] = gcd(seg_tree[2*v + 1], seg_tree[2*v + 2]) #вызов функции gcd
+
+def get_gcd(v, l, r, seg_tree, ql, qr): #функция поиска нод
+    if ql <= l and qr >= r:
+        return seg_tree[v]
+    if ql >= r or qr <= l:
+        return 0
+    m = (r+l)//2 #поиск середины
+    s_tl = get_gcd(2*v+1, l, m, seg_tree, ql, qr)
+    s_tr = get_gcd(2*v+2, m, r, seg_tree, ql, qr)
+    return gcd(s_tl, s_tr) #рекурсия нод
+
+def update(v, l, r, seg_tree, idx, value): #функция update
+    if r-l == 1:
+        seg_tree[v] = value
+        return
+    m = (r+l)//2 #поиск середины
+    if idx < m:
+        update(2*v+1, l, m, seg_tree, idx, value) #рекурсия
+    else:
+        update(2*v+2, m, r, seg_tree, idx, value) #рекурсия
+    seg_tree[v] = gcd(seg_tree[2*v + 1], seg_tree[2*v + 2]) #нод
+
+def main(): #основная часть
+    num = int(input()) #ввод данных
+    seg_tree = [0]*4*num 
+    a = list(map(int, input().split()))[:num] #ввод с клавиатуры
+    build(0, 0, num, seg_tree, a) #вызов функции build
+    q = int(input())
+    res = [] #результат
+    while q != 0: #пока q отлично от 0
+        que, l, r = map(str, input().split()) 
+        if que=="s": #если que равно s, то добавляем нод в результат
+            res.append(get_gcd(0, 0, num, seg_tree, int(l)-1, int(r)))
+        else:
+            update(0, 0, num, seg_tree, int(l)-1, int(r)) #вызов функции update
+        q -= 1
+    print(*res) #вывод
+main() #вызов основной части
