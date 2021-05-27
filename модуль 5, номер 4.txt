@@ -1,48 +1,48 @@
-def build(v, l, r, seg_tree, a): #создаем функцию и указываем её параметры 
-    if r-l == 1: #сравниваем разность с единицей
-        seg_tree[v] = a[l] #присваем segm_tree значение элемента
+def build(v, l, r, seg_tree, a): #СЃРѕР·РґР°РµРј С„СѓРЅРєС†РёСЋ Рё СѓРєР°Р·С‹РІР°РµРј РµС‘ РїР°СЂР°РјРµС‚СЂС‹ 
+    if r-l == 1: #СЃСЂР°РІРЅРёРІР°РµРј СЂР°Р·РЅРѕСЃС‚СЊ СЃ РµРґРёРЅРёС†РµР№
+        seg_tree[v] = a[l] #РїСЂРёСЃРІР°РµРј segm_tree Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
         return
-    m = (r+l)//2 #находим середину
-    build(2*v+1, l, m, seg_tree, a) #вызываем функцию 
-    build(2*v+2, m, r, seg_tree, a) #вызываем функцию
+    m = (r+l)//2 #РЅР°С…РѕРґРёРј СЃРµСЂРµРґРёРЅСѓ
+    build(2*v+1, l, m, seg_tree, a) #РІС‹Р·С‹РІР°РµРј С„СѓРЅРєС†РёСЋ 
+    build(2*v+2, m, r, seg_tree, a) #РІС‹Р·С‹РІР°РµРј С„СѓРЅРєС†РёСЋ
     seg_tree[v] = seg_tree[2*v+1] + seg_tree[2*v+2]
 
-def search_k0(v, l, r, seg_tree, k): #поиск K0
+def search_k0(v, l, r, seg_tree, k): #РїРѕРёСЃРє K0
     if k > seg_tree[v]: 
         return -1
     if r - l == 1:
         return r
-    m = (r+l)//2 #поиск середины
+    m = (r+l)//2 #РїРѕРёСЃРє СЃРµСЂРµРґРёРЅС‹
     if seg_tree[2*v+1] >= k:
-        return search_k0(2*v+1, l, m, seg_tree, k) #рекурсия
+        return search_k0(2*v+1, l, m, seg_tree, k) #СЂРµРєСѓСЂСЃРёСЏ
     else:
-        return search_k0(2*v+2, m, r, seg_tree, k - seg_tree[2*v+1]) #рекурсия 
+        return search_k0(2*v+2, m, r, seg_tree, k - seg_tree[2*v+1]) #СЂРµРєСѓСЂСЃРёСЏ 
 
-def get_sum(v, l, r, seg_tree, ql, qr): #функция для нахождения суммы
+def get_sum(v, l, r, seg_tree, ql, qr): #С„СѓРЅРєС†РёСЏ РґР»СЏ РЅР°С…РѕР¶РґРµРЅРёСЏ СЃСѓРјРјС‹
     if ql <= l and qr >= r: 
         return seg_tree[v]
     if ql >= r or qr <= l:
         return 0
-    m = (r+l)//2 #поиск середины
+    m = (r+l)//2 #РїРѕРёСЃРє СЃРµСЂРµРґРёРЅС‹
     s_tl = get_sum(2*v+1, l, m, seg_tree, ql, qr)
     s_tr = get_sum(2*v+2, m, r, seg_tree, ql, qr)
     return s_tl + s_tr
-def main(): #основная часть
-    num = int(input()) #ввод данных
+def main(): #РѕСЃРЅРѕРІРЅР°СЏ С‡Р°СЃС‚СЊ
+    num = int(input()) #РІРІРѕРґ РґР°РЅРЅС‹С…
     a = [0 if int(i) != 0 else 1 for i in input().split()] 
     seg_tree = [0]*4*num
-    build(0, 0, num, seg_tree, a) #вызов функции
+    build(0, 0, num, seg_tree, a) #РІС‹Р·РѕРІ С„СѓРЅРєС†РёРё
     q = int(input())
-    ind = [] #индекс
+    ind = [] #РёРЅРґРµРєСЃ
     while q != 0: 
-        l, r, k = map(int, input().split()) #ввод данных с клавиатуры
-        sum = get_sum(0, 0, num, seg_tree, l-1, r) #вызов функции get_sum
+        l, r, k = map(int, input().split()) #РІРІРѕРґ РґР°РЅРЅС‹С… СЃ РєР»Р°РІРёР°С‚СѓСЂС‹
+        sum = get_sum(0, 0, num, seg_tree, l-1, r) #РІС‹Р·РѕРІ С„СѓРЅРєС†РёРё get_sum
         if sum >= k and l > 1:
-            ind.append(search_k0(0, 0, num, seg_tree, k+get_sum(0, 0, num, seg_tree, 0, l-1))) #добавление индекса
+            ind.append(search_k0(0, 0, num, seg_tree, k+get_sum(0, 0, num, seg_tree, 0, l-1))) #РґРѕР±Р°РІР»РµРЅРёРµ РёРЅРґРµРєСЃР°
         elif sum >= k and l == 1:
-            ind.append(search_k0(0, 0, num, seg_tree, k)) #добавление индекса
+            ind.append(search_k0(0, 0, num, seg_tree, k)) #РґРѕР±Р°РІР»РµРЅРёРµ РёРЅРґРµРєСЃР°
         else:
             ind.append(-1)
         q -= 1
-    print(*ind) #вывод
+    print(*ind) #РІС‹РІРѕРґ
 main() 
