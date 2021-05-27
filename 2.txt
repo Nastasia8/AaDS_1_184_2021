@@ -1,0 +1,92 @@
+2.1
+
+numbers = [5, 0, 7, 3, 6, 14, 96, 23, 82, 53]
+# First
+odd1 = []
+for number in numbers:
+    if (number % 2) != 0:
+        odd1.append(number)
+# Second
+odd2 = [number for number in numbers if number % 2 != 0]
+# Third
+def check(number):
+    if number % 2 != 0:
+        return number
+odd3 = list(filter(check, numbers))
+# Fourth
+odd4 = list(filter(lambda number: number % 2 != 0, numbers))
+# Print
+print(odd1)
+print(odd2)
+print(odd3)
+print(odd4)
+
+2.2
+
+import math
+numbers = list(range(1, 26))
+def first():
+    i = 0
+    for number in numbers:
+        if number % 2 == 0:
+            numbers[i] = math.pow(number, 2)
+        i = i + 1
+first()
+print([number**2 if number % 2 == 0 else number for number in range(1, 26)])
+
+2.3
+
+plants = ["Clematis", "Dahlia", "Rose", "Iris", "Chrysanthemum", "Freesia", "Astilba", "Lily", "Peony"]
+symbols = sorted([plant[-1] for plant in plants], reverse = True)
+print(symbols)
+
+2.4
+
+
+numbers = list(range(1, 26))
+def reverse(numbers):
+    first = numbers[0]
+    numbers[0] = numbers[-1]
+    numbers[-1] = first
+reverse(numbers)
+print(numbers) 
+
+2.5
+
+a = {"tiger", 0, "leopard", "elephant", 2, 7}
+b = {1, "camel", "elephant", 2, 9}
+union = a | b
+crossing = a & b
+print("Union: ", union)
+print("Crossing: ", crossing)
+
+union2 = []
+crossing2 = []
+for i in a:
+    union2.append(i)
+for i in b:
+    union2.append(i)
+print("Union 2:", union2)
+
+2.7
+
+numbers = [5, 1, 3, 5, 3, 1, 0, 9, 5, 3, 8, 6, 5, 7]
+answer = []
+i = 0
+for number in numbers:
+    if number == 5:
+        answer.append(i)
+    i = i + 1
+print(answer)
+
+2.8
+
+a = {number: (number + 1) * 4 for number in range(7)}
+addition = 0
+multiplication = 1
+for i in a:
+    addition = addition + a[i]
+for i in a:
+    multiplication = multiplication * a[i]
+print("Addition = ", addition)
+print("Mumultiplication = ", multiplication)
