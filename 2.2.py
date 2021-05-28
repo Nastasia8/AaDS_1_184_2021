@@ -1,7 +1,7 @@
-n = int(input("Введите количество пар: "))
+n = int(input())
 final_sort = []
 for i in range(n):
-    a, b = map(int, input("Введите пару: ").split())
+    a, b = map(int, input().split())
     final_sort.append([a, b])
 for i in range(n - 1):
     for j in range(n - i - 1):
