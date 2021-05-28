@@ -1,0 +1,51 @@
+from math import gcd    #Библиотека встроенной функции НОД 
+def build(x, y, z, segment_tree, numbers):
+    if z - y == 1:
+        segment_tree[x] = numbers[y]
+        return
+    m = (z+y)//2
+    build(2*x+1, y, m, segment_tree, numbers)
+    build(2*x + 2, m, z, segment_tree, numbers)
+    segment_tree[x] = gcd(segment_tree[2*x +1], segment_tree[2*x + 2])
+
+def update(x, y, z, segment_tree, indx, value):  #Метод обновления 
+    if z - y == 1:
+        segment_tree[x] = value
+        return
+    m = (y+z)//2
+    if indx < m:
+        update(2*x + 1, y, m, segment_tree, indx, value)
+    else:
+        update(2*x + 2,m, z, segment_tree,indx, value)
+    segment_tree[x] = gcd(segment_tree[2*x +1], segment_tree[2*x + 2])
+
+
+def NOD(x, y, z, segment_tree, qy, qz):        #Функция, которая находит НОД 
+    if qy <= y and qz >= z:
+        return segment_tree[x]
+    if qy >= z or qz<=y:
+        return 0
+    m = (z+y)//2
+    st_y = NOD(2*x +1, y, m, segment_tree, qy, qz)
+    st_z = NOD(2*x + 2, m, z, segment_tree, qy, qz)
+    return gcd(st_y, st_z)
+
+
+def main():
+    n = int(input())
+    numbers = list(map(int, input().split()))[:n]
+    segment_tree = [0]*4*n
+    build(0, 0, n, segment_tree, numbers)
+    q = int(input())
+    arr = []
+    while q != 0:
+        type_q, y, z = map(str, input().split())
+        if type_q == 's':
+            arr.append(NOD(0, 0, n, segment_tree, int(y)-1, int(z)))
+        else:
+            update(0, 0, n, segment_tree, int(y)-1, int(z))
+        q -= 1
+    print(*arr)
+
+
+main() 
